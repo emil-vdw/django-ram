@@ -10,8 +10,8 @@ ROLE_DEFINITION_ATTRIBUTES = {*REQUIRED_ROLE_DEFNITION_ATTRIBUTES, "description"
 
 def create_roles(sender, **kwargs):
     """Create role DB records from role definitions."""
-    from django_ram.roles.definition import ROLE_DEFINITION_ATTRIBUTES, role_definitions
-    from django_ram.roles.models import Role
+    from django_ram.definition import ROLE_DEFINITION_ATTRIBUTES, role_definitions
+    from django_ram.models import Role
 
     for role_definition in role_definitions:
         role, _ = Role.objects.get_or_create(name=role_definition.name)

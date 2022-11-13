@@ -1,4 +1,4 @@
-from django_ram.roles.definition import RoleDefinition
+from django_ram.definition import RoleDefinition
 
 
 class Administrator(RoleDefinition):

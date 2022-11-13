@@ -1,7 +1,7 @@
 """Test Roles app models."""
 import pytest
 
-from django_ram.roles.models import Role
+from django_ram.models import Role
 from tests.test_roles.models import CustomUser
 
 

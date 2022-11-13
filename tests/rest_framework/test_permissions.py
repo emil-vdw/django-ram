@@ -2,12 +2,12 @@ from unittest.mock import Mock
 
 import pytest
 
+from django_ram.models import Role
 from django_ram.rest_framework.permissions import (
     HasRoleBasePermission,
     generate_permission_name_from_role_definition,
     has_role,
 )
-from django_ram.roles.models import Role
 from tests.test_roles.roles import Administrator, Author
 
 

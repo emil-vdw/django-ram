@@ -11,7 +11,7 @@ class Role(models.Model):
     description = models.TextField(verbose_name=_("Description"))
 
     class Meta(object):
-        abstract = "django_ram.roles" not in settings.INSTALLED_APPS
+        abstract = "django_ram" not in settings.INSTALLED_APPS
 
     def __str__(self) -> str:
         return self.name

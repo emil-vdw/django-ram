@@ -20,7 +20,7 @@ Add `django_ram'` to your `INSTALLED_APPS` setting.
 ```python
 INSTALLED_APPS = [
     ...
-    'django_ram.roles',
+    'django_ram',
 ]
 ```
 
@@ -33,7 +33,7 @@ INSTALLED_APPS = [
 Add the `RolesMixin` to your user model.
 
 ```python
-from django_ram.roles.models import RolesMixin
+from django_ram.models import RolesMixin
 
 
 class CustomUser(AbstractUser, RolesMixin):
@@ -47,7 +47,7 @@ Also remember to configure `AUTH_USER_MODEL` in your `settings.py` module.
 some_app/roles.py
 
 ```python
-from django_ram.roles import RoleDefinition
+from django_ram import RoleDefinition
 
 
 class AdminRole(RoleDefinition):
@@ -71,7 +71,7 @@ Register the admin class (or subclass it to expand functionality.)
 
 ```python
 from django.contrib import admin
-from django_ram.roles.admin import UserAdmin
+from django_ram.admin import UserAdmin
 
 ...
 

@@ -3,7 +3,7 @@ from typing import Optional, Type
 
 from rest_framework.permissions import BasePermission
 
-from django_ram.roles.definition import RoleDefinition
+from django_ram.definition import RoleDefinition
 
 
 class HasRoleBasePermission(BasePermission):

@@ -2,8 +2,8 @@
 import pytest
 from django.core.management import call_command
 
-from django_ram.roles import definition
-from django_ram.roles.models import Role
+from django_ram import definition
+from django_ram.models import Role
 
 
 @pytest.fixture
