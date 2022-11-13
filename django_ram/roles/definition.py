@@ -1,14 +1,28 @@
 """Classes and utilities used to define user roles."""
+
+
 role_definitions = set()
 
 
-REQUIRED_ROLE_DEFNITION_ATTRIBUTES = {
-    "name",
-}
-ROLE_DEFINITION_ATTRIBUTES = {
-    *REQUIRED_ROLE_DEFNITION_ATTRIBUTES,
-    "description",
-}
+REQUIRED_ROLE_DEFNITION_ATTRIBUTES = {"name"}
+ROLE_DEFINITION_ATTRIBUTES = {*REQUIRED_ROLE_DEFNITION_ATTRIBUTES, "description"}
+
+
+def create_roles(sender, **kwargs):
+    """Create role DB records from role definitions."""
+    from django_ram.roles.definition import ROLE_DEFINITION_ATTRIBUTES, role_definitions
+    from django_ram.roles.models import Role
+
+    for role_definition in role_definitions:
+        role, _ = Role.objects.get_or_create(name=role_definition.name)
+        role_attributes = [
+            attribute_name
+            for attribute_name in ROLE_DEFINITION_ATTRIBUTES
+            if attribute_name != "name" and hasattr(role_definition, attribute_name)
+        ]
+        for attribute_name in role_attributes:
+            setattr(role, attribute_name, getattr(role_definition, attribute_name))
+            role.save(update_fields=role_attributes)
 
 
 def _verify_role_definition_attributes(role_definition_class_name, role_attributes):
@@ -16,9 +30,13 @@ def _verify_role_definition_attributes(role_definition_class_name, role_attribut
         assert role_attributes.get(
             attribute_name
         ), f"Role definition '{role_definition_class_name}' is missing required attribute '{attribute_name}'"
+
         assert role_attributes["name"] not in [
             role_definition.name for role_definition in role_definitions
-        ], f"Role '{role_definition_class_name}' has name '{role_attributes['name']}' that already exists"
+        ], (
+            f"Role definition '{role_definition_class_name}' "
+            f"has role name '{role_attributes['name']}' that already exists"
+        )
 
 
 class RoleDefinitionBase(type):
@@ -38,3 +56,4 @@ class RoleDefinitionBase(type):
 
 class RoleDefinition(metaclass=RoleDefinitionBase):
     name: str
+    description: str = ""

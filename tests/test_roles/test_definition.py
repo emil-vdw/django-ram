@@ -86,7 +86,7 @@ class TestRoleDefinition:
 
         with pytest.raises(
             AssertionError,
-            match="Role 'DuplicateTestRole' has name 'test_role' that already exists",
+            match="Role definition 'DuplicateTestRole' has role name 'test_role' that already exists",
         ):
 
             class DuplicateTestRole(definition.RoleDefinition):

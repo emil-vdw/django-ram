@@ -4,7 +4,7 @@ version = "0.0.1"
 authors = [
   { name="Emil van der Westhuizen", email="vdwemil@protonmail.com" },
 ]
-description = "Django rest framework Identity and Access Management."
+description = "Django Role based Access Management."
 readme = "README.md"
 requires-python = ">=3.6"
 classifiers = [
@@ -15,6 +15,9 @@ classifiers = [
 dependencies = [
     "django>=3.0",
 ]
+
+[project.optional-dependencies]
+rest_framework = ["djangorestframework>=3.10.0,<=3.14.0"]
 
 [project.urls]
 "Homepage" = "https://github.com/vdwemil95/django-ram"
@@ -28,9 +31,9 @@ testpaths = [
 ]
 
 [tool.isort]
+profile = "black"
 atomic = true
 extra_standard_library = "types"
-multi_line_output = 5
 known_third_party = "pytest,_pytest,django,pytz,uritemplate"
 known_first_party = "django_ram,tests"
 
