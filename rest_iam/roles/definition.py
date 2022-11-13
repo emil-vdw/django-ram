@@ -2,16 +2,23 @@
 role_definitions = set()
 
 
-_REQUIRED_ROLE_DEFNITION_ATTRIBUTES = {
+REQUIRED_ROLE_DEFNITION_ATTRIBUTES = {
     "name",
+}
+ROLE_DEFINITION_ATTRIBUTES = {
+    *REQUIRED_ROLE_DEFNITION_ATTRIBUTES,
+    "description",
 }
 
 
 def _verify_role_definition_attributes(role_definition_class_name, role_attributes):
-    for attribute_name in _REQUIRED_ROLE_DEFNITION_ATTRIBUTES:
+    for attribute_name in REQUIRED_ROLE_DEFNITION_ATTRIBUTES:
         assert role_attributes.get(
             attribute_name
         ), f"Role definition '{role_definition_class_name}' is missing required attribute '{attribute_name}'"
+        assert role_attributes["name"] not in [
+            role_definition.name for role_definition in role_definitions
+        ], f"Role '{role_definition_class_name}' has name '{role_attributes['name']}' that already exists"
 
 
 class RoleDefinitionBase(type):
