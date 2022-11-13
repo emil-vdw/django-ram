@@ -1,6 +1,6 @@
 from django.contrib.auth.models import AbstractUser
 
-from rest_iam.roles.models import RolesMixin
+from django_ram.roles.models import RolesMixin
 
 
 class CustomUser(AbstractUser, RolesMixin):

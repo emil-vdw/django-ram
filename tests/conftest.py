@@ -41,7 +41,7 @@ def pytest_configure(config):
             "django.contrib.staticfiles",
             "rest_framework",
             "rest_framework.authtoken",
-            "rest_iam.roles",
+            "django_ram.roles",
             "tests",
             "tests.test_roles",
         ),

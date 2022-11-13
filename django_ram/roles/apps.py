@@ -4,8 +4,10 @@ from django.db.models.signals import post_migrate
 
 def create_roles(sender, **kwargs):
     """Create role DB records from role definitions."""
-    from rest_iam.roles.definition import ROLE_DEFINITION_ATTRIBUTES, role_definitions
-    from rest_iam.roles.models import Role
+    from django_ram.roles.definition import (
+        ROLE_DEFINITION_ATTRIBUTES, role_definitions
+    )
+    from django_ram.roles.models import Role
 
     for role_definition in role_definitions:
         role, _ = Role.objects.get_or_create(
@@ -22,7 +24,7 @@ def create_roles(sender, **kwargs):
 
 
 class RolesConfig(AppConfig):
-    name = "rest_iam.roles"
+    name = "django_ram.roles"
     verbose_name = "Roles"
 
     def ready(self) -> None:

@@ -1,5 +1,5 @@
 [project]
-name = "django-rest-iam"
+name = "django-ram"
 version = "0.0.1"
 authors = [
   { name="Emil van der Westhuizen", email="vdwemil@protonmail.com" },
@@ -17,8 +17,8 @@ dependencies = [
 ]
 
 [project.urls]
-"Homepage" = "https://github.com/vdwemil95/django-rest-iam"
-"Bug Tracker" = "https://github.com/vdwemil95/django-rest-iam/issues"
+"Homepage" = "https://github.com/vdwemil95/django-ram"
+"Bug Tracker" = "https://github.com/vdwemil95/django-ram/issues"
 
 [tool.pytest.ini_options]
 minversion = "6.0"
@@ -32,7 +32,7 @@ atomic = true
 extra_standard_library = "types"
 multi_line_output = 5
 known_third_party = "pytest,_pytest,django,pytz,uritemplate"
-known_first_party = "rest_iam,tests"
+known_first_party = "django_ram,tests"
 
 [build-system]
 requires = [
