@@ -6,7 +6,7 @@ from django_ram.models import Role
 
 
 class RoleAdmin(admin.ModelAdmin):
-    list_display = ("name",)
+    list_display = ("name", "description")
 
 
 class UserAdmin(DjangoUserAdmin):

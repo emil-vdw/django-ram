@@ -9,7 +9,7 @@ ROLE_DEFINITION_ATTRIBUTES = {*REQUIRED_ROLE_DEFNITION_ATTRIBUTES, "description"
 
 
 def create_roles(sender, **kwargs):
-    """Create role DB records from role definitions."""
+    """Create :class:`~django_ram.models.Role`\s from :class:`~django_ram.definition.RoleDefinition`\s."""
     from django_ram.definition import ROLE_DEFINITION_ATTRIBUTES, role_definitions
     from django_ram.models import Role
 
@@ -55,5 +55,11 @@ class RoleDefinitionBase(type):
 
 
 class RoleDefinition(metaclass=RoleDefinitionBase):
+    """
+    A class used to define a :class:`~django_ram.models.Role`.
+    """
+
+    #: Role name
     name: str
+    #: Role description
     description: str = ""

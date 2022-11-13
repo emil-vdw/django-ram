@@ -9,6 +9,7 @@ Role based user access management for Django.
    :caption: Contents:
 
    introduction
+   overview
    installation
    api_docs
 

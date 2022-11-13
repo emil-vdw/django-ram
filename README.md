@@ -47,7 +47,7 @@ Also remember to configure `AUTH_USER_MODEL` in your `settings.py` module.
 some_app/roles.py
 
 ```python
-from django_ram import RoleDefinition
+from django_ram.definition import RoleDefinition
 
 
 class AdminRole(RoleDefinition):

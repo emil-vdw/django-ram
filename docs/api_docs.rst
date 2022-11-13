@@ -4,10 +4,18 @@ API Docs
 Models
 ------
 
-.. automodule:: django_ram.models
+.. autoclass:: django_ram.models.Role
     :members:
-    :undoc-members:
+    :exclude-members: id, objects
+    :undoc-members: name, description
     :show-inheritance:
+
+
+.. autoclass:: django_ram.models.RolesMixin
+    :members:
+    :show-inheritance:
+
+               
 
 Admin
 -----       

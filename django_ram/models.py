@@ -35,13 +35,13 @@ class RolesMixin(models.Model):
     @classmethod
     def with_role(cls, role: Union[Role, str], is_active=True, include_superusers=True):
         """
-        Return users that have the `role`.
+        Return queryset of users with ``role``.
 
         :param role: Return users with this role.
-        :param is_active: Include active (True), inactive (False), or all users (None).
+        :param is_active: Include active (`True`), inactive (`False`), or all users (`None`).
         :param include_superusers: Whether to include superusers in the result.
 
-        :return: Queryset of users with `role`.
+        :return: Queryset of users with ``role``.
         """
         UserModel = get_user_model()
         role_query = models.Q(user=models.OuterRef("pk"))
@@ -62,7 +62,12 @@ class RolesMixin(models.Model):
 
         return UserModel._default_manager.filter(user_query)
 
-    def has_role(self, role_name):
+    def has_role(self, role_name: str):
+        """
+        Return `True` if the user is a superuser or has the role with name ``role_name``.
+
+        :param role_name: Name of the role to check.
+        """
         return self.is_active and (
             self.is_superuser or self.roles.filter(name=role_name).exists()
         )

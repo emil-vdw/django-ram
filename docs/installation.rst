@@ -6,7 +6,7 @@ Installation
     pip install django-ram
 
 
-Optionally install with rest framework support:
+Optionally install with rest framework:
 
 .. code-block::
 

@@ -23,6 +23,7 @@ author = "Emil van der Westhuizen"
 
 extensions = [
     "sphinx.ext.autodoc",
+    "sphinx_autodoc_typehints",
 ]
 
 add_module_names = False
