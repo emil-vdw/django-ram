@@ -1,0 +1,32 @@
+[project]
+name = "django-rest-iam"
+version = "0.0.1"
+authors = [
+  { name="Emil van der Westhuizen", email="vdwemil@protonmail.com" },
+]
+description = "Django rest framework Identity and Access Management."
+readme = "README.md"
+requires-python = ">=3.6"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/vdwemil95/django-rest-iam"
+"Bug Tracker" = "https://github.com/vdwemil95/django-rest-iam/issues"
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = "-ra -q"
+testpaths = [
+    "tests",
+]
+
+[build-system]
+requires = [
+    "setuptools >= 35.0.2",
+    "setuptools_scm >= 2.0.0, <3"
+]
+build-backend = "setuptools.build_meta"
