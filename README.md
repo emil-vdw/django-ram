@@ -79,7 +79,7 @@ admin.site.register(YourUserModel, UserAdmin)
 ```
 
 
-## Django Rest Framework
+## Rest Framework Support
 
 ```python
 from django_ram.rest_framework import HasRoleBasePermission, has_role

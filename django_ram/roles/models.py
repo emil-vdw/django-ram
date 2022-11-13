@@ -58,7 +58,7 @@ class RolesMixin(models.Model):
         if include_superusers:
             user_query |= models.Q(is_superuser=True)
         if is_active is not None:
-            user_query |= models.Q(is_active=is_active)
+            user_query &= models.Q(is_active=is_active)
 
         return UserModel._default_manager.filter(user_query)
 
