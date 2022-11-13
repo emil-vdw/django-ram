@@ -8,6 +8,7 @@ from django.utils.translation import gettext_lazy as _
 
 class Role(models.Model):
     name = models.CharField(verbose_name=_("Name"), max_length=50, unique=True)
+    description = models.TextField(verbose_name=_("Description"))
 
     class Meta(object):
         abstract = "rest_iam.roles" not in settings.INSTALLED_APPS
