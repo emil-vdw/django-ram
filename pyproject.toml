@@ -24,6 +24,13 @@ testpaths = [
     "tests",
 ]
 
+[tool.isort]
+atomic=true
+extra_standard_library="types"
+multi_line_output=5
+known_third_party="pytest,_pytest,django,pytz,uritemplate"
+known_first_party="rest_iam,tests"
+
 [build-system]
 requires = [
     "setuptools >= 35.0.2",
