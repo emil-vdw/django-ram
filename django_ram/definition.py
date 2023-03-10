@@ -25,6 +25,27 @@ def create_roles(sender, **kwargs):
             role.save(update_fields=role_attributes)
 
 
+def clean_removed_roles(sender, **kwargs):
+    """Delete or mark as inactive all roles that do not have a definition (role definition has been removed).
+
+    If the ``DELETE_REMOVED_ROLES`` setting is enabled, delete all roles without a corresponding
+    :class:`~django_ram.definition.RoleDefinition`. Otherwise, only set ``active`` to `False`.
+    """
+    from django.conf import settings
+
+    from django_ram.definition import role_definitions
+    from django_ram.models import Role
+
+    removed_roles = Role.objects.exclude(
+        name__in={role_definition.name for role_definition in role_definitions}
+    )
+
+    if getattr(settings, "DELETE_REMOVED_ROLES", False):
+        removed_roles.delete()
+    else:
+        removed_roles.update(active=False)
+
+
 def _verify_role_definition_attributes(role_definition_class_name, role_attributes):
     for attribute_name in REQUIRED_ROLE_DEFNITION_ATTRIBUTES:
         assert role_attributes.get(
