@@ -6,13 +6,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('django_ram', '0001_initial'),
+        ("django_ram", "0001_initial"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='role',
-            name='active',
-            field=models.BooleanField(blank=True, default=True, verbose_name='Active'),
+            model_name="role",
+            name="active",
+            field=models.BooleanField(blank=True, default=True, verbose_name="Active"),
         ),
     ]
