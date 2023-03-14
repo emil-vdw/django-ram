@@ -79,6 +79,27 @@ class TestRoleDefinition:
             name="test_role", description="Some even more obscure description"
         ).exists()
 
+    @pytest.mark.django_db
+    def test_removed_roles_marked_inactive(self):
+        Role.objects.create(
+            name="removed_role",
+            description="No longer defined",
+        )
+        call_command("migrate", "--noinput")
+
+        assert Role.objects.get(name="removed_role").active is False
+
+    @pytest.mark.django_db
+    def test_removed_roles_deleted(self, settings):
+        settings.DELETE_REMOVED_ROLES = True
+        Role.objects.create(
+            name="removed_role",
+            description="No longer defined",
+        )
+        call_command("migrate", "--noinput")
+
+        assert Role.objects.filter(name="removed_role").exists() is False
+
     def test_role_definition_duplicate_name(self):
         class TestRole(definition.RoleDefinition):
             name = "test_role"
