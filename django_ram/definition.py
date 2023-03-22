@@ -8,8 +8,12 @@ REQUIRED_ROLE_DEFNITION_ATTRIBUTES = {"name"}
 ROLE_DEFINITION_ATTRIBUTES = {*REQUIRED_ROLE_DEFNITION_ATTRIBUTES, "description"}
 
 
-def create_roles(sender, **kwargs):
+def create_roles(sender, plan, **kwargs):
     """Create :class:`~django_ram.models.Role`\s from :class:`~django_ram.definition.RoleDefinition`\s."""
+    unapplying = plan and any([unapply for _, unapply in plan])
+    if unapplying:
+        return
+
     from django_ram.definition import ROLE_DEFINITION_ATTRIBUTES, role_definitions
     from django_ram.models import Role
 
@@ -25,12 +29,16 @@ def create_roles(sender, **kwargs):
             role.save(update_fields=role_attributes)
 
 
-def clean_removed_roles(sender, **kwargs):
+def clean_removed_roles(sender, plan, **kwargs):
     """Delete or mark as inactive all roles that do not have a definition (role definition has been removed).
 
     If the ``DELETE_REMOVED_ROLES`` setting is enabled, delete all roles without a corresponding
     :class:`~django_ram.definition.RoleDefinition`. Otherwise, only set ``active`` to `False`.
     """
+    unapplying = plan and any([unapply for _, unapply in plan])
+    if unapplying:
+        return
+
     from django.conf import settings
 
     from django_ram.definition import role_definitions
