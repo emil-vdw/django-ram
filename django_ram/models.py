@@ -9,6 +9,7 @@ from django.utils.translation import gettext_lazy as _
 class Role(models.Model):
     name = models.CharField(verbose_name=_("Name"), max_length=50, unique=True)
     description = models.TextField(verbose_name=_("Description"))
+    active = models.BooleanField(verbose_name=_("Active"), blank=True, default=True)
 
     class Meta(object):
         abstract = "django_ram" not in settings.INSTALLED_APPS
