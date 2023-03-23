@@ -1,6 +1,6 @@
 [project]
 name = "django-ram"
-version = "0.1.1"
+version = "0.1.2"
 authors = [
   { name="Emil van der Westhuizen", email="vdwemil@protonmail.com" },
 ]
